@@ -10,6 +10,7 @@ const io = require("socket.io-client");
 //let ProtoBuf = decode.protobuf;
 let Message = ProtoBuf.loadProtoFile("./PricingData.proto", (err, builder) => {
   Message = builder.build("PricingData"); // StaticData // PricingData
+
   loadMessage();
 });
 
@@ -33,7 +34,7 @@ let loadMessage = () => {
 
   connection.onopen = () => {
     // Subscribe to AMC and Tesla symbols. List can contain many symbols
-    connection.send('{"subscribe":["TATASTEEL.NS"]}');
+    connection.send('{"subscribe":["TA"]}');
   };
 
   connection.onerror = (error) => {
@@ -42,8 +43,8 @@ let loadMessage = () => {
 
   connection.onmessage = (e) => {
     let msg = Message.decode(e.data);
-    console.log("All data set: ", msg);
-    console.log("Decoded message", msg.id + " with price: " + msg.price);
+    // console.log("All data set: ", msg);
+    console.log(msg.id + " with price: " + msg.price);
 
     // Create object which will be sent to distribution over local socket.io server
     var trackedData = {
