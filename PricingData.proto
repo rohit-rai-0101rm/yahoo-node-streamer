@@ -78,4 +78,3 @@ message StaticData {
     string displayName = 5;
 };
 
-
