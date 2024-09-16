@@ -34,7 +34,7 @@ let loadMessage = () => {
 
   connection.onopen = () => {
     // Subscribe to AMC and Tesla symbols. List can contain many symbols
-    connection.send('{"subscribe":["TA"]}');
+    connection.send('{"subscribe":["BTC-USD"]}');
   };
 
   connection.onerror = (error) => {
